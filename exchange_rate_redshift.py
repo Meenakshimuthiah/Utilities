@@ -72,7 +72,7 @@ def csv_to_s3(ds, base='USD', **kwargs):
         pd.DataFrame(rates).to_csv(tempfile.name, index=False, header=False)
 
         key = "currency-exchange/{}_{}.csv".format(exchange_name, ds)
-        s3 = S3Hook(aws_conn_id=connections.aws)
+        s3 = S3Hook()
         s3.load_file(
             filename=tempfile.name,
             bucket_name="exchange_rates",
